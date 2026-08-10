@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  backend1:
+    build: ./backend
+    container_name: backend1
+    environment:
+      - PORT=3000
+      - SERVER_NAME=Backend-1
+    networks:
+      - app-network
+
+  backend2:
+    build: ./backend
+    container_name: backend2
+    environment:
+      - PORT=3000
+      - SERVER_NAME=Backend-2
+    networks:
+      - app-network
+
+  backend3:
+    build: ./backend
+    container_name: backend3
+    environment:
+      - PORT=3000
+      - SERVER_NAME=Backend-3
+    networks:
+      - app-network
+
+  caddy:
+    build: ./loadbalancer
+    container_name: caddy
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    depends_on:
+      - backend1
+      - backend2
+      - backend3
+
+networks:
+  app-network:
+    driver: bridge
