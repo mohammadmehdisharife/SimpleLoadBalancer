@@ -1,5 +1,5 @@
 # SimpleLoadBalancer
 
-[Diagram](./Diagram.svg)
+[Diagram](./Diagram.png)
 
 simple LoadBalancer with Caddy web server
